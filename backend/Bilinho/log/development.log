@@ -4033,3 +4033,54 @@ NameError (undefined local variable or method `student' for #<Api::V1::StudentsC
 Did you mean?  @student):
   
 app/controllers/api/v1/students_controller.rb:23:in `create'
+Started GET "/api/v1/students" for ::1 at 2022-12-10 20:25:49 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Luzia", "cpf"=>"12378945613", "birthdate"=>"1988-02-03", "payment_method"=>"credit_card", "student"=>{"name"=>"Luzia", "cpf"=>"12378945613", "birthdate"=>"1988-02-03", "payment_method"=>"credit_card"}}
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/api/v1/students_controller.rb:10:in `index'
+Completed 200 OK in 36ms (Views: 19.7ms | ActiveRecord: 7.4ms | Allocations: 36978)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-10 20:26:02 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"name"=>"Luzia", "cpf"=>"12378945613", "birthdate"=>"1988-02-03", "payment_method"=>"credit_card", "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments"[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:10:in `index'
+Completed 200 OK in 19ms (Views: 12.5ms | ActiveRecord: 6.9ms | Allocations: 15702)
+
+
+Started POST "/api/v1/students" for ::1 at 2022-12-10 20:26:26 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Ana", "cpf"=>"12378945613", "birthdate"=>"1988-02-03", "payment_method"=>"boleto", "student"=>{"name"=>"Ana", "cpf"=>"12378945613", "birthdate"=>"1988-02-03", "payment_method"=>"boleto"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+  [1m[36mStudent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "12378945613"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 15ms (Views: 3.0ms | ActiveRecord: 0.8ms | Allocations: 5911)
+
+
+Started POST "/api/v1/students" for ::1 at 2022-12-10 20:26:32 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Ana", "cpf"=>"12378945614", "birthdate"=>"1988-02-03", "payment_method"=>"boleto", "student"=>{"name"=>"Ana", "cpf"=>"12378945614", "birthdate"=>"1988-02-03", "payment_method"=>"boleto"}}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "12378945614"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+  [1m[36mStudent Create (0.4ms)[0m  [1m[32mINSERT INTO "students" ("name", "cpf", "birthdate", "payment_method", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Ana"], ["cpf", "12378945614"], ["birthdate", "1988-02-03"], ["payment_method", "boleto"], ["created_at", "2022-12-10 23:26:32.738757"], ["updated_at", "2022-12-10 23:26:32.738757"]]
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/students_controller.rb:22:in `create'
+Completed 201 Created in 12ms (Views: 0.4ms | ActiveRecord: 1.9ms | Allocations: 3573)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-10 20:26:37 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Ana", "cpf"=>"12378945614", "birthdate"=>"1988-02-03", "payment_method"=>"boleto", "student"=>{"name"=>"Ana", "cpf"=>"12378945614", "birthdate"=>"1988-02-03", "payment_method"=>"boleto"}}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  ↳ app/controllers/api/v1/students_controller.rb:10:in `index'
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms | Allocations: 1522)
+
+
