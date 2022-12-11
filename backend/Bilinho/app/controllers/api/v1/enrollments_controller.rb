@@ -3,14 +3,21 @@ module Api
 		class EnrollmentsController < ApplicationController
 			# GET /enrollments
 			def index        
-				enrollments = Enrollment.order('created_at ASC');                
-        enrollmentCount = []
-        count=0
-        while count<params["count"] do 
-          enrollmentCount.push(enrollments[count],bills:Bill.where(enrollment_id:enrollments[count].id) )          
-          count+=1
-        end    
-           
+				enrollments = Enrollment.order('created_at ASC'); 				             
+				enrollmentCount = []
+				count=0
+				while count<params["count"] do 
+					bills=Bill.where(enrollment_id:enrollments[count].id)
+					enrollmentCount.push({
+						id:enrollments[count].id,
+						student_id:enrollments[count].student_id,
+						amount:enrollments[count].amount,
+						installments:enrollments[count].installments,
+						due_day:enrollments[count].due_day,
+						bills:bills
+					})          
+					count+=1
+				end  
 				render json: {page: params["page"], items:enrollmentCount},status: :ok
 			end
 			# GET /enrollments/1
@@ -20,9 +27,10 @@ module Api
 			end
 			# POST /enrollments
 			def create
-				enrollment = Enrollment.new(enrollment_params)             
-				if enrollment.save      
-          bills=Bill.where(enrollment_id:enrollment.id)
+				enrollment = Enrollment.new(enrollment_params) 				           
+				if enrollment.save 		
+					#CreateBillsService.call(enrollment) 			  
+         			bills=Bill.where(enrollment_id:enrollment.id)
 					render json: {id:enrollment.id,student_id:enrollment.student_id, amount:enrollment.amount,
                         installments:enrollment.installments, due_day:enrollment.due_day,
                         bills:bills}, status: :ok

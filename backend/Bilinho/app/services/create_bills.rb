@@ -1,8 +1,22 @@
-class CreateBills
+class CreateBillsService
+    attr_reader :amount, :due_day, :installments
+    
+    def initialize (enrollment)
+        @amount = enrollment.amount
+        @due_day =enrollment.due_day
+        @installments = enrollment.installments  
+        @id = enrollment.id 
+        #@enrollment = enrollment
+    #    create_bills
+    end
 
-    #attr_reader :enrollment, :amount, :due_day, :installments
+    def self.call(*args)
+       new(*args).create_bills
+    end
+
+    private
+
     def create_bills
-
         day=Date.today.day  
         year=Date.today.year 
         month=Date.today.month  
@@ -23,15 +37,21 @@ class CreateBills
                 next_month=1
             end
             if (month==2 && due_day>=29)
-                bills.create(
-                    :amount => amount/installments,                
-                    :due_date => Date.today.change(day: 28,month:month, year: year),                         
-                )    
+                @bills=Bills.create({
+                    amount:amount/ installments,                
+                    due_date:Date.today.change(day: 28,month:month, year: year),
+                    status:"open",
+                    enrollment_id:id
+                })  
+                render json: @bills.erros, status: "ERROR"  unless @bills.save
             else
-                bills.create(
-                    :amount => amount/installments,                
-                    :due_date => Date.today.change(day: due_day,month:month, year: year),                         
-                )    
+                @bills=Bills.create({
+                    amount:amount/ installments,                
+                    due_date:Date.today.change(day:  due_day,month:month, year: year),     
+                    status:"open",
+                    enrollment_id:id                    
+                }) 
+                render json: @bills.erros, status: "ERROR"  unless @bills.save   
             end                             
             count+=1
         end 
