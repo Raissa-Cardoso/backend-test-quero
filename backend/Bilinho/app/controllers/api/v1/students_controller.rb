@@ -4,13 +4,21 @@ module Api
 			# GET /students
 			def index        
 				students = Student.order('created_at ASC');                
-        studentCount = []
-        count=0
-        while count<params["count"] do 
-          studentCount.push(students[count])
-          count+=1
-        end        
-				render json: {page: params["page"], items:studentCount},status: :ok
+				studentCount = []
+				count=0
+				while count<params["count"] do 
+					studentCount.push({
+						id:students[count].id, 
+						name:students[count].name, 
+						cpf:students[count].cpf,
+						birthdate:students[count].birthdate, 
+						payment_method:students[count].payment_method
+					})
+					count+=1
+				end        
+				render json: {page: params["page"], 
+							  items:studentCount},
+							 status: :ok
 			end
 			# GET /students/1
 			def show
