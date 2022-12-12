@@ -15,11 +15,6 @@ module Api
         render json: @bill
       end 
 
-      # DELETE /bills/1
-      def destroy
-        @bill.destroy
-      end
-
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_bill
