@@ -16,9 +16,7 @@ module Api
 					})
 					count+=1
 				end        
-				render json: {page: params["page"], 
-							  items:studentCount},
-							 status: :ok
+				render json: {page: params["page"], items:studentCount},status: :ok
 			end
 			# GET /students/1
 			def show
