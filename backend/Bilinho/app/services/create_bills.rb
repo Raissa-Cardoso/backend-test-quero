@@ -1,32 +1,32 @@
 class CreateBillsService
-    attr_reader :amount, :due_day, :installments
+    attr_accessor :enrollment, :due_day, :installments, :amount
+
+    def initialize(enrollment)
+        @enrollment=enrollment
+        @bills = []
+    end
+
+    def charge(id, amount, due_day, installments)
+        id =id
+        amount=amount
+        due_day=due_day
+        installments=installments
+        define_date
+    end
     
-    def initialize (enrollment)
-        @amount = enrollment.amount
-        @due_day =enrollment.due_day
-        @installments = enrollment.installments  
-        @id = enrollment.id 
-        #@enrollment = enrollment
-    #    create_bills
-    end
-
-    def self.call(*args)
-       new(*args).create_bills
-    end
-
     private
 
-    def create_bills
+    def define_date
         day=Date.today.day  
         year=Date.today.year 
         month=Date.today.month  
-        if (day>due_day)
+        if (day>enrollment[:due_day])
             month=Date.today.month+1  
         end               
             
         count=0
         next_month=0              
-        while count<installments do 
+        while count<enrollment[:installments] do 
             if(month<=12)
                 month=month+next_month
                 next_month=1            
@@ -36,26 +36,34 @@ class CreateBillsService
                 year=year+1
                 next_month=1
             end
-            if (month==2 && due_day>=29)
-                @bills=Bills.create({
-                    amount:amount/ installments,                
-                    due_date:Date.today.change(day: 28,month:month, year: year),
-                    status:"open",
-                    enrollment_id:id
-                })  
-                render json: @bills.erros, status: "ERROR"  unless @bills.save
+            if (month==2 && enrollment[:due_day]>=29)
+                due_date: Date.today.change(day: 28,month:month, year: year)
+                insert_bills(due_date)          
             else
-                @bills=Bills.create({
-                    amount:amount/ installments,                
-                    due_date:Date.today.change(day:  due_day,month:month, year: year),     
-                    status:"open",
-                    enrollment_id:id                    
-                }) 
-                render json: @bills.erros, status: "ERROR"  unless @bills.save   
-            end                             
+                due_date: Date.today.change(day: enrollment[:due_day],month:month, year: year)
+                insert_bills(due_date)                                                
+            end                      
             count+=1
         end 
-    end            
-
-
+        create_bills
+    end   
+    
+    def insert_bills(due_date)
+        bills.push({
+                    amount: enrollment[:amount]/enrollment[:installments],
+                    due_date: due_date,
+                    status: "open",                   
+                    enrollment_id: enrollment[:id] 
+                })
+    end
+    
+    def create_bills
+        @bills.each do |bill|
+            Bill.create(
+                    amount: bill.amount,
+                    due_date: bill.ue_date,
+                    status: bill.status,                   
+                    enrollment_id: bill.enrollment_id                                          
+            ) 
+    end
 end

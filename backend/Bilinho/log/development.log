@@ -7017,3 +7017,937 @@ Processing by Api::V1::EnrollmentsController#index as */*
 Completed 200 OK in 26ms (Views: 9.2ms | ActiveRecord: 10.5ms | Allocations: 10212)
 
 
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-11 21:14:32 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/models/enrollment.rb:9: syntax error, unexpected '<', expecting `end'
+    <!--
+    ^
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/models/enrollment.rb:10: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+    after_create :create_bills   
+                 ^
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/models/enrollment.rb:52: syntax error, unexpected '\n', expecting `do' for lambda or tLAMBEG):
+  
+app/models/enrollment.rb:9: syntax error, unexpected '<', expecting `end'
+app/models/enrollment.rb:10: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/models/enrollment.rb:52: syntax error, unexpected '\n', expecting `do' for lambda or tLAMBEG
+app/models/enrollment.rb:9: syntax error, unexpected '<', expecting `end'
+app/models/enrollment.rb:10: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+app/models/enrollment.rb:52: syntax error, unexpected '\n', expecting `do' for lambda or tLAMBEG
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-11 21:19:36 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (1.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:10:in `index'
+  [1m[36mBill Load (1.5ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:21:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:21:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:21:in `index'
+Completed 200 OK in 92ms (Views: 37.6ms | ActiveRecord: 19.1ms | Allocations: 57491)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:20:21 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x000055bd222a0d98>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mStudent Load (0.8ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mEnrollment Create (3.0ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:20:21.316679"], ["updated_at", "2022-12-12 00:20:21.316679"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 7.7ms | Allocations: 26642)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:29:22 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f37a8d3a298>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mEnrollment Create (1.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:29:22.923120"], ["updated_at", "2022-12-12 00:29:22.923120"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 8.8ms | Allocations: 7805)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:31:16 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f379c15c158>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:31:17.110775"], ["updated_at", "2022-12-12 00:31:17.110775"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 8.7ms | Allocations: 11287)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:33:37 -0300
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:4:in `<class:EnrollmentsController>'
+app/controllers/api/v1/enrollments_controller.rb:3:in `<module:V1>'
+app/controllers/api/v1/enrollments_controller.rb:2:in `<module:Api>'
+app/controllers/api/v1/enrollments_controller.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:34:28 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f37a415fd50>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:34:28.345187"], ["updated_at", "2022-12-12 00:34:28.345187"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 7.4ms | Allocations: 11171)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:35:31 -0300
+  
+TypeError (:EnrollmentsController is not a class/module):
+  
+app/models/enrollment.rb:10:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:35:39 -0300
+  
+TypeError (:EnrollmentsController is not a class/module):
+  
+app/models/enrollment.rb:10:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:35:50 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:10:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:36:05 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:10:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:36:27 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:10:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:36:33 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f37a8882458>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:36:33.144991"], ["updated_at", "2022-12-12 00:36:33.144991"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 10.1ms | Allocations: 11241)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:37:47 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e44e59538>, params: {"student_id"=>2, "amount"=>300, "installments"=>3, "due_day"=>10, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>300, "installments"=>3, "due_day"=>10, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.7ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 300], ["installments", 3], ["due_day", 10], ["created_at", "2022-12-12 00:37:47.749829"], ["updated_at", "2022-12-12 00:37:47.749829"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 70ms (ActiveRecord: 8.6ms | Allocations: 63105)
+
+
+  
+NameError (uninitialized constant Api::V1::EnrollmentsController::CreateBillsService):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started GET "/api/v1/students" for ::1 at 2022-12-11 21:39:48 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 1397)
+
+
+Started POST "/api/v1/students" for ::1 at 2022-12-11 21:40:23 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Sônia", "cpf"=>"12377945678", "birthdate"=>nil, "payment_method"=>"credit_card", "student"=>{"name"=>"Sônia", "cpf"=>"12377945678", "birthdate"=>nil, "payment_method"=>"credit_card"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e44fe0168>, params: {"name"=>"Sônia", "cpf"=>"12377945678", "birthdate"=>nil, "payment_method"=>"credit_card", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Sônia", "cpf"=>"12377945678", "birthdate"=>nil, "payment_method"=>"credit_card"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "12377945678"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Create (0.8ms)[0m  [1m[32mINSERT INTO "students" ("name", "cpf", "birthdate", "payment_method", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sônia"], ["cpf", "12377945678"], ["birthdate", nil], ["payment_method", "credit_card"], ["created_at", "2022-12-12 00:40:23.942146"], ["updated_at", "2022-12-12 00:40:23.942146"]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.3ms | Allocations: 3600)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-11 21:44:47 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:11:in `index'
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (0.9ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+Completed 200 OK in 35ms (Views: 19.2ms | ActiveRecord: 7.9ms | Allocations: 23069)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-11 21:45:03 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "bill"=>{}}
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 33ms (Views: 32.6ms | ActiveRecord: 0.4ms | Allocations: 10167)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-11 21:45:44 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:11:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (1.1ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+Completed 200 OK in 11ms (Views: 6.3ms | ActiveRecord: 2.0ms | Allocations: 4315)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-11 21:46:02 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 157)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/enrollments_controller.rb:10:in `<'
+app/controllers/api/v1/enrollments_controller.rb:10:in `index'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:46:11 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e451b3198>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:46:11.968797"], ["updated_at", "2022-12-12 00:46:11.968797"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 5.5ms | Allocations: 8892)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:33:in `new'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:47:00 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e388b12e0>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:47:00.191277"], ["updated_at", "2022-12-12 00:47:00.191277"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 13.5ms | Allocations: 10553)
+
+
+  
+NoMethodError (undefined method `due_day' for #<CreateBills:0x00007f2e38bcbf70>):
+  
+app/services/create_bills.rb:7:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:47:52 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e2c10f8b8>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:47:53.045561"], ["updated_at", "2022-12-12 00:47:53.045561"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (5.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 12.7ms | Allocations: 9658)
+
+
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:3: syntax error, unexpected `self', expecting ')'
+    def create_bills(self)
+                     ^~~~
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:39: syntax error, unexpected `end', expecting end-of-input):
+  
+app/services/create_bills.rb:3: syntax error, unexpected `self', expecting ')'
+app/services/create_bills.rb:39: syntax error, unexpected `end', expecting end-of-input
+app/services/create_bills.rb:3: syntax error, unexpected `self', expecting ')'
+app/services/create_bills.rb:39: syntax error, unexpected `end', expecting end-of-input
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:48:16 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e3414e6c8>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:48:16.130049"], ["updated_at", "2022-12-12 00:48:16.130049"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 10.3ms | Allocations: 9699)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/services/create_bills.rb:3:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:49:28 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e30365438>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (1.7ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:49:28.251359"], ["updated_at", "2022-12-12 00:49:28.251359"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 11.6ms | Allocations: 10665)
+
+
+  
+NameError (undefined local variable or method `bills' for #<CreateBills:0x00007f2e304e3e90>):
+  
+app/services/create_bills.rb:29:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:51:49 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e34555d98>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:51:49.189244"], ["updated_at", "2022-12-12 00:51:49.189244"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 13.7ms | Allocations: 9628)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:33:in `new'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:52:40 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e3019e438>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:52:40.565944"], ["updated_at", "2022-12-12 00:52:40.565944"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 8.5ms | Allocations: 10388)
+
+
+  
+NoMethodError (undefined method `create' for CreateBills:Class):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:53:06 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e44daafd8>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:53:06.566400"], ["updated_at", "2022-12-12 00:53:06.566400"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 7.5ms | Allocations: 10457)
+
+
+  
+NoMethodError (undefined method `create_bills' for CreateBills:Class):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:53:52 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e2c12ee48>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:53:52.175258"], ["updated_at", "2022-12-12 00:53:52.175258"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 14.0ms | Allocations: 9634)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:33:in `new'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:54:17 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e3414ed08>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:54:17.564364"], ["updated_at", "2022-12-12 00:54:17.564364"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 7.8ms | Allocations: 9628)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/services/create_bills.rb:3:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:54:34 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e30355e48>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:54:34.332771"], ["updated_at", "2022-12-12 00:54:34.332771"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 9.4ms | Allocations: 10635)
+
+
+  
+NameError (undefined local variable or method `enrollment' for #<CreateBills:0x00007f2e304c5648>):
+  
+app/services/create_bills.rb:7:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:55:12 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e3453d0e0>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:55:12.899067"], ["updated_at", "2022-12-12 00:55:12.899067"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 7.9ms | Allocations: 10514)
+
+
+  
+NoMethodError (undefined method `due_day' for #<CreateBills:0x00007f2e34a40b00>):
+  
+app/services/create_bills.rb:7:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:56:03 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e3087a5e0>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:56:03.759340"], ["updated_at", "2022-12-12 00:56:03.759340"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 12.6ms | Allocations: 9659)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:33:in `new'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:56:32 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e38b22a38>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.7ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:56:32.780745"], ["updated_at", "2022-12-12 00:56:32.780745"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 7.2ms | Allocations: 10454)
+
+
+  
+NoMethodError (undefined method `due_day' for #<CreateBills:0x00007f2e38d00f30>):
+  
+app/services/create_bills.rb:7:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:56:41 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e2c3e7900>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:56:41.102310"], ["updated_at", "2022-12-12 00:56:41.102310"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 7.3ms | Allocations: 9633)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/api/v1/enrollments_controller.rb:33:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:33:in `new'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 21:56:58 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2e4527f518>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 00:56:58.547987"], ["updated_at", "2022-12-12 00:56:58.547987"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 9.0ms | Allocations: 9627)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/services/create_bills.rb:3:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:34:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 22:12:25 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f138ce8d1d0>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.9ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (3.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 01:12:25.343589"], ["updated_at", "2022-12-12 01:12:25.343589"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 14.3ms | Allocations: 62611)
+
+
+  
+NoMethodError (undefined method `charge' for CreateBills:Class):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 22:13:39 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f138c5311b8>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (1.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 01:13:39.361393"], ["updated_at", "2022-12-12 01:13:39.361393"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 9.8ms | Allocations: 10728)
+
+
+  
+NoMethodError (undefined method `perform' for CreateBills:Class):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 22:14:02 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f138d1e6340>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.6ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 01:14:02.700063"], ["updated_at", "2022-12-12 01:14:02.700063"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 63ms (ActiveRecord: 6.7ms | Allocations: 11807)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 22:14:30 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f13809afef8>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 01:14:30.792437"], ["updated_at", "2022-12-12 01:14:30.792437"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.7ms | Allocations: 5397)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-11 22:18:52 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f1374369758>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.6ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 01:18:53.056473"], ["updated_at", "2022-12-12 01:18:53.056473"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 6.3ms | Allocations: 11756)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-12 10:14:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f53dce81368>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (3.6ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 13:14:59.783450"], ["updated_at", "2022-12-12 13:14:59.783450"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 15.4ms | Allocations: 63695)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:14:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-12 10:17:29 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x000056220a4fcd60>, params: {"student_id"=>2, "amount"=>3000, "installments"=>3, "due_day"=>29, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>3000, "installments"=>3, "due_day"=>29, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 3000], ["installments", 3], ["due_day", 29], ["created_at", "2022-12-12 13:17:29.748492"], ["updated_at", "2022-12-12 13:17:29.748492"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 7.2ms | Allocations: 11798)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:15:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:29:28 -0300
+  
+NameError (undefined local variable or method `payment_method' for Student:Class):
+  
+app/models/student.rb:8:in `<class:Student>'
+app/models/student.rb:1:in `<main>'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:30:46 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.8ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 10.2ms | Allocations: 3119)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:31:18 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"JoANA", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"JoANA", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 166)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:31:39 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"JoANA", "cpf"=>"12378945655", "birthdate"=>"1988-05-18", "payment_method"=>"boletoS", "student"=>{"name"=>"JoANA", "cpf"=>"12378945655", "birthdate"=>"1988-05-18", "payment_method"=>"boletoS"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 135)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:31:56 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"12378945655", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Joana", "cpf"=>"12378945655", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 136)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:32:43 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 135)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:33:07 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boletos", "student"=>{"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boletos"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 135)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started GET "/api/v1/students" for ::1 at 2022-12-12 10:33:47 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boletos", "student"=>{"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boletos"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 3.4ms | Allocations: 314)
+
+
+  
+ArgumentError (comparison of Integer with nil failed):
+  
+app/controllers/api/v1/students_controller.rb:9:in `<'
+app/controllers/api/v1/students_controller.rb:9:in `index'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:34:44 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boletos", "student"=>{"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boletos"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53d865f7d8>, params: {"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boletos", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boletos"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "1237894567"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 4.2ms | Allocations: 6771)
+
+
+  
+NoMethodError (undefined method `erros' for #<Student id: nil, name: "Joana", cpf: "1237894567", birthdate: "1988-05-18", payment_method: "boletos", created_at: nil, updated_at: nil>
+Did you mean?  errors):
+  
+app/controllers/api/v1/students_controller.rb:34:in `create'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:35:01 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53cc01ebf0>, params: {"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Joana", "cpf"=>"1237894567", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "1237894567"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.8ms | Allocations: 4290)
+
+
+  
+NoMethodError (undefined method `erros' for #<Student id: nil, name: "Joana", cpf: "1237894567", birthdate: "1988-05-18", payment_method: "boleto", created_at: nil, updated_at: nil>
+Did you mean?  errors):
+  
+app/controllers/api/v1/students_controller.rb:34:in `create'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:35:12 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53d0fd31a0>, params: {"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Joana", "cpf"=>"12378945675", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "12378945675"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Create (2.4ms)[0m  [1m[32mINSERT INTO "students" ("name", "cpf", "birthdate", "payment_method", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Joana"], ["cpf", "12378945675"], ["birthdate", "1988-05-18"], ["payment_method", "boleto"], ["created_at", "2022-12-12 13:35:12.526356"], ["updated_at", "2022-12-12 13:35:12.526356"]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 4.0ms | Allocations: 3124)
+
+
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:38:38 -0300
+  
+ArgumentError (Unknown validator: 'MessageValidator'):
+  
+app/models/student.rb:7:in `<class:Student>'
+app/models/student.rb:1:in `<main>'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:39:13 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/models/student.rb:7: syntax error, unexpected '}', expecting =>
+...sage: {"Cpf is invalid number"}
+...                              ^
+):
+  
+app/models/student.rb:7: syntax error, unexpected '}', expecting =>
+app/models/student.rb:7: syntax error, unexpected '}', expecting =>
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:41:03 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/models/student.rb:7: syntax error, unexpected '\n', expecting =>):
+  
+app/models/student.rb:7: syntax error, unexpected '\n', expecting =>
+app/models/student.rb:7: syntax error, unexpected '\n', expecting =>
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:41:47 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53d0d86e10>, params: {"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "1237894565"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 3.3ms | Allocations: 6665)
+
+
+  
+NoMethodError (undefined method `erros' for #<Student id: nil, name: "Saulo", cpf: "1237894565", birthdate: "1988-05-18", payment_method: "boleto", created_at: nil, updated_at: nil>
+Did you mean?  errors):
+  
+app/controllers/api/v1/students_controller.rb:34:in `create'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:43:18 -0300
+  
+ArgumentError (Unknown validator: 'MessageValidator'):
+  
+app/models/student.rb:7:in `<class:Student>'
+app/models/student.rb:1:in `<main>'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:44:29 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53d1409e18>, params: {"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Saulo", "cpf"=>"1237894565", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "1237894565"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 3.3ms | Allocations: 6599)
+
+
+  
+NoMethodError (undefined method `erros' for #<Student id: nil, name: "Saulo", cpf: "1237894565", birthdate: "1988-05-18", payment_method: "boleto", created_at: nil, updated_at: nil>
+Did you mean?  errors):
+  
+app/controllers/api/v1/students_controller.rb:34:in `create'
+Started POST "/api/v1/students" for ::1 at 2022-12-12 10:44:49 -0300
+Processing by Api::V1::StudentsController#create as */*
+  Parameters: {"name"=>"Saulo", "cpf"=>"12378945665", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "student"=>{"name"=>"Saulo", "cpf"=>"12378945665", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+[31mUnpermitted parameter: :student. Context: { controller: Api::V1::StudentsController, action: create, request: #<ActionDispatch::Request:0x00007f53d845f0a0>, params: {"name"=>"Saulo", "cpf"=>"12378945665", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"create", "student"=>{"name"=>"Saulo", "cpf"=>"12378945665", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "students" WHERE "students"."cpf" = $1 LIMIT $2[0m  [["cpf", "12378945665"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mStudent Create (1.8ms)[0m  [1m[32mINSERT INTO "students" ("name", "cpf", "birthdate", "payment_method", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Saulo"], ["cpf", "12378945665"], ["birthdate", "1988-05-18"], ["payment_method", "boleto"], ["created_at", "2022-12-12 13:44:49.340985"], ["updated_at", "2022-12-12 13:44:49.340985"]]
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/students_controller.rb:31:in `create'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 3103)
+
+

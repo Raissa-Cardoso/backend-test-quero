@@ -1,6 +1,7 @@
 module Api
 	module V1
 		class EnrollmentsController < ApplicationController
+			
 			# GET /enrollments
 			def index        
 				enrollments = Enrollment.order('created_at ASC'); 				             
@@ -29,7 +30,8 @@ module Api
 			def create
 				enrollment = Enrollment.new(enrollment_params) 				           
 				if enrollment.save 		
-					#CreateBillsService.call(enrollment) 			  
+					#createBills=CreateBills.new() 	
+					#createBills.create_bills(self)		  
          			bills=Bill.where(enrollment_id:enrollment.id)
 					render json: {id:enrollment.id,student_id:enrollment.student_id, amount:enrollment.amount,
                         installments:enrollment.installments, due_day:enrollment.due_day,
