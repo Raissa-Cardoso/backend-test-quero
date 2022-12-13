@@ -7951,3 +7951,1379 @@ Processing by Api::V1::StudentsController#create as */*
 Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 3103)
 
 
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-12 11:31:22 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.8ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:11:in `index'
+  [1m[36mBill Load (0.8ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+Completed 200 OK in 82ms (Views: 23.0ms | ActiveRecord: 9.6ms | Allocations: 57771)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-12 11:32:03 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007fada0c0b110>, params: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.6ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 1500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-12 14:32:03.543376"], ["updated_at", "2022-12-12 14:32:03.543376"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mBill Create (1.5ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 750], ["due_date", "2022-12-12"], ["status", "open"], ["created_at", "2022-12-12 14:32:03.552481"], ["updated_at", "2022-12-12 14:32:03.552481"], ["enrollment_id", 130]]
+  ↳ app/models/enrollment.rb:42:in `create_bills'
+  [1m[36mBill Create (0.5ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 750], ["due_date", "2023-01-12"], ["status", "open"], ["created_at", "2022-12-12 14:32:03.558615"], ["updated_at", "2022-12-12 14:32:03.558615"], ["enrollment_id", 130]]
+  ↳ app/models/enrollment.rb:42:in `create_bills'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 130]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:36:in `create'
+Completed 200 OK in 59ms (Views: 2.3ms | ActiveRecord: 7.2ms | Allocations: 30534)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:32:25 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b8ce95570>, params: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.9ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (3.1ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 1500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 13:32:25.525012"], ["updated_at", "2022-12-13 13:32:25.525012"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 14.3ms | Allocations: 63710)
+
+
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:13:in `create_bills'
+app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:33:15 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:35:33 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:47:24 -0300
+  
+NameError (uninitialized constant Enrollment::CreateBillsService):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:50:17 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:36: syntax error, unexpected ':', expecting `end'
+                due_date: Date.today.change(day: 28,mo...
+                        ^
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:39: syntax error, unexpected ':', expecting `end'
+                due_date: Date.today.change(day: @enro...
+                        ^
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/services/create_bills.rb:36: syntax error, unexpected ':', expecting `end'
+app/services/create_bills.rb:39: syntax error, unexpected ':', expecting `end'
+app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'
+app/services/create_bills.rb:36: syntax error, unexpected ':', expecting `end'
+app/services/create_bills.rb:39: syntax error, unexpected ':', expecting `end'
+app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:51:04 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'
+app/services/create_bills.rb:65: syntax error, unexpected end-of-input, expecting `end'
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:51:39 -0300
+  
+NoMethodError (undefined method `id' for Enrollment:Class
+Did you mean?  ids):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:52:31 -0300
+  
+NoMethodError (undefined method `id' for Enrollment:Class
+Did you mean?  ids):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:53:30 -0300
+  
+NoMethodError (undefined method `id' for Enrollment:Class
+Did you mean?  ids):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:54:14 -0300
+  
+NameError (undefined local variable or method `enrollment' for Enrollment:Class):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:55:47 -0300
+  
+NoMethodError (undefined method `id' for Enrollment:Class
+Did you mean?  ids):
+  
+app/models/enrollment.rb:11:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:56:38 -0300
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:58:54 -0300
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:59:04 -0300
+  
+NameError (undefined local variable or method `id' for Enrollment:Class
+Did you mean?  ids):
+  
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 10:59:14 -0300
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+  
+ActiveRecord::RecordNotFound (Couldn't find Enrollment with 'id'=Enrollment):
+  
+app/services/create_bills.rb:5:in `initialize'
+app/models/enrollment.rb:9:in `new'
+app/models/enrollment.rb:9:in `<class:Enrollment>'
+app/models/enrollment.rb:1:in `<main>'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:03:02 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b7c7837d8>, params: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>1500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.9ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 1500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:03:02.618153"], ["updated_at", "2022-12-13 14:03:02.618153"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 132], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 8.9ms | Allocations: 13707)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>750, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>132}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:04:11 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>2, "amount"=>1500, "installments"=>2, "due_day"=>12, "bill"=>{"amount"=>1500}}
+  [1m[36mBill Load (6.9ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 52ms (Views: 40.6ms | ActiveRecord: 14.6ms | Allocations: 24889)
+
+
+Started DELETE "/api/v1/enrollment/130" for ::1 at 2022-12-13 11:06:03 -0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/v1/enrollment/130"):
+  
+Started DELETE "/api/v1/enrollments/130" for ::1 at 2022-12-13 11:06:13 -0300
+Processing by Api::V1::EnrollmentsController#destroy as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "id"=>"130", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 130], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:46:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Load (0.7ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 130]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 276]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 277]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mEnrollment Destroy (1.5ms)[0m  [1m[31mDELETE FROM "enrollments" WHERE "enrollments"."id" = $1[0m  [["id", 130]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+Completed 200 OK in 38ms (Views: 0.6ms | ActiveRecord: 6.8ms | Allocations: 7886)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:06:42 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "bill"=>{"amount"=>500}}
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.3ms | Allocations: 9917)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:07:53 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b8d1b7e38>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:07:53.557789"], ["updated_at", "2022-12-13 14:07:53.557789"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 133], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 9.3ms | Allocations: 13500)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>133}:Hash):
+  
+app/services/create_bills.rb:59:in `block in create_bills'
+app/services/create_bills.rb:57:in `each'
+app/services/create_bills.rb:57:in `create_bills'
+app/services/create_bills.rb:44:in `define_date'
+app/services/create_bills.rb:10:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:08:55 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "bill"=>{"amount"=>500}}
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 18ms (Views: 15.4ms | ActiveRecord: 3.3ms | Allocations: 11863)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:09:46 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b8461e7a0>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.4ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:09:46.689494"], ["updated_at", "2022-12-13 14:09:46.689494"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 134], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 9.9ms | Allocations: 13476)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>134}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:10:39 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "bill"=>{"amount"=>500}}
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 3.6ms | Allocations: 11843)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:10:56 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b7c0ffc40>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (2.8ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:10:56.493929"], ["updated_at", "2022-12-13 14:10:56.493929"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 135], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 6.0ms | Allocations: 4811)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>135}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:12:36 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc4ce955f8>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.7ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:12:36.867400"], ["updated_at", "2022-12-13 14:12:36.867400"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 83ms (ActiveRecord: 11.7ms | Allocations: 65377)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>136}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:13:21 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc4d114f68>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:13:21.647980"], ["updated_at", "2022-12-13 14:13:21.647980"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 137], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 10.2ms | Allocations: 13498)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>137}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:14:00 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc40b76b80>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:14:00.308759"], ["updated_at", "2022-12-13 14:14:00.308759"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (4.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 138], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 13.9ms | Allocations: 13470)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>138}:Hash):
+  
+app/services/create_bills.rb:60:in `block in create_bills'
+app/services/create_bills.rb:58:in `each'
+app/services/create_bills.rb:58:in `create_bills'
+app/services/create_bills.rb:45:in `define_date'
+app/services/create_bills.rb:11:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:16:39 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc4cb42f90>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.8ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:16:39.165099"], ["updated_at", "2022-12-13 14:16:39.165099"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 139], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 9.5ms | Allocations: 13556)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>139}:Hash):
+  
+app/services/create_bills.rb:63:in `block in create_bills'
+app/services/create_bills.rb:61:in `each'
+app/services/create_bills.rb:61:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:17:30 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc2c05d578>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:17:30.944087"], ["updated_at", "2022-12-13 14:17:30.944087"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 140], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 9.0ms | Allocations: 13507)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>140}:Hash):
+  
+app/services/create_bills.rb:64:in `block in create_bills'
+app/services/create_bills.rb:62:in `each'
+app/services/create_bills.rb:62:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:18:26 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc41090b20>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.6ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:18:26.179356"], ["updated_at", "2022-12-13 14:18:26.179356"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 141], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 10.7ms | Allocations: 11756)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>141}:Hash):
+  
+app/services/create_bills.rb:62:in `block in create_bills'
+app/services/create_bills.rb:61:in `each'
+app/services/create_bills.rb:61:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:20:14 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc48492cd0>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:20:14.719304"], ["updated_at", "2022-12-13 14:20:14.719304"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 142], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 11.6ms | Allocations: 13453)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>142}:Hash):
+  
+app/services/create_bills.rb:63:in `block in create_bills'
+app/services/create_bills.rb:61:in `each'
+app/services/create_bills.rb:61:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:20:36 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc34124af8>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:20:36.855281"], ["updated_at", "2022-12-13 14:20:36.855281"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 143], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 10.8ms | Allocations: 13479)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>143}:Hash):
+  
+app/services/create_bills.rb:64:in `block in create_bills'
+app/services/create_bills.rb:62:in `each'
+app/services/create_bills.rb:62:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:21:04 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc3c1b4e70>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.5ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:21:04.143154"], ["updated_at", "2022-12-13 14:21:04.143154"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 144], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 12.0ms | Allocations: 13507)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>144}:Hash):
+  
+app/services/create_bills.rb:64:in `block in create_bills'
+app/services/create_bills.rb:62:in `each'
+app/services/create_bills.rb:62:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:21:30 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc40bae558>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.7ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:21:30.646508"], ["updated_at", "2022-12-13 14:21:30.646508"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 145], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 10.3ms | Allocations: 11759)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>145}:Hash):
+  
+app/services/create_bills.rb:61:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:21:59 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc2c4d1b90>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:21:59.210219"], ["updated_at", "2022-12-13 14:21:59.210219"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 146], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 10.0ms | Allocations: 13471)
+
+
+  
+NoMethodError (undefined method `amount' for {:amount=>250, :due_date=>Thu, 12 Jan 2023, :status=>"open", :enrollment_id=>146}:Hash):
+  
+app/services/create_bills.rb:64:in `block in create_bills'
+app/services/create_bills.rb:62:in `each'
+app/services/create_bills.rb:62:in `create_bills'
+app/services/create_bills.rb:48:in `define_date'
+app/services/create_bills.rb:14:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:33:in `create'
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:22:38 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc41434858>, params: {"student_id"=>2, "amount"=>500, "installments"=>2, "due_day"=>12, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>500, "installments"=>2, "due_day"=>12, "student_id"=>2}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.4ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 500], ["installments", 2], ["due_day", 12], ["created_at", "2022-12-13 14:22:38.097098"], ["updated_at", "2022-12-13 14:22:38.097098"], ["student_id", 2]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+  [1m[36mCACHE Enrollment Load (0.0ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Create (1.5ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 250], ["due_date", "2023-01-12"], ["status", "open"], ["created_at", "2022-12-13 14:22:38.126328"], ["updated_at", "2022-12-13 14:22:38.126328"], ["enrollment_id", 147]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 147], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Create (0.4ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 250], ["due_date", "2023-02-12"], ["status", "open"], ["created_at", "2022-12-13 14:22:38.136961"], ["updated_at", "2022-12-13 14:22:38.136961"], ["enrollment_id", 147]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 147]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:36:in `create'
+Completed 200 OK in 65ms (Views: 2.4ms | ActiveRecord: 17.2ms | Allocations: 34770)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:24:36 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"student_id"=>6, "amount"=>350, "installments"=>2, "due_day"=>20, "enrollment"=>{"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007efc4826eb20>, params: {"student_id"=>6, "amount"=>350, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.1ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.3ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 350], ["installments", 2], ["due_day", 20], ["created_at", "2022-12-13 14:24:36.100173"], ["updated_at", "2022-12-13 14:24:36.100173"], ["student_id", 6]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:5:in `initialize'
+  [1m[36mCACHE Enrollment Load (0.0ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Create (0.5ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 175], ["due_date", "2022-12-20"], ["status", "open"], ["created_at", "2022-12-13 14:24:36.109911"], ["updated_at", "2022-12-13 14:24:36.109911"], ["enrollment_id", 148]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Create (1.7ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 175], ["due_date", "2023-01-20"], ["status", "open"], ["created_at", "2022-12-13 14:24:36.119436"], ["updated_at", "2022-12-13 14:24:36.119436"], ["enrollment_id", 148]]
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:62:in `block in create_bills'
+  [1m[36mBill Load (3.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 148]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:36:in `create'
+Completed 200 OK in 36ms (Views: 2.4ms | ActiveRecord: 10.9ms | Allocations: 10037)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:25:09 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>6, "amount"=>350, "installments"=>2, "due_day"=>20, "bill"=>{"amount"=>350}}
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.4ms | Allocations: 10595)
+
+
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:32:21 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.5ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007efc341a5e28>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 7.5ms | Allocations: 5287)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:33:39 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x0000558929a18940>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 7.2ms | Allocations: 5262)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:35:34 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f3394acc528>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 4.9ms | Allocations: 41072)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:36:42 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f3394984d78>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 3.1ms | Allocations: 5212)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:37:43 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f33ad0baa08>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 4.0ms | Allocations: 5210)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:38:04 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f33acbb16d8>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 3.7ms | Allocations: 5268)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:39:57 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f33ad0187d0>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 3.6ms | Allocations: 5210)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started GET "/api/v1/bills" for ::1 at 2022-12-13 11:40:32 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "bill"=>{"amount"=>450}}
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+Completed 200 OK in 43ms (Views: 26.7ms | ActiveRecord: 4.4ms | Allocations: 45958)
+
+
+Started GET "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:41:04 -0300
+Processing by Api::V1::EnrollmentsController#show as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.5ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:26:in `show'
+Completed 200 OK in 20ms (Views: 0.5ms | ActiveRecord: 4.6ms | Allocations: 16379)
+
+
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:41:18 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.6ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f2b28f107c0>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.6ms | Allocations: 3364)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:42:54 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/controllers/api/v1/enrollments_controller.rb:70: syntax error, unexpected `end', expecting end-of-input):
+  
+app/controllers/api/v1/enrollments_controller.rb:70: syntax error, unexpected `end', expecting end-of-input
+app/controllers/api/v1/enrollments_controller.rb:70: syntax error, unexpected `end', expecting end-of-input
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:43:18 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f2b1c990388>, params: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 3.2ms | Allocations: 5261)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started GET "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:44:04 -0300
+Processing by Api::V1::EnrollmentsController#show as */*
+  Parameters: {"student_id"=>6, "amount"=>450, "installments"=>2, "due_day"=>20, "id"=>"148", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:26:in `show'
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 4.0ms | Allocations: 2792)
+
+
+Started PUT "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:44:35 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "enrollment"=>{"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f2b1c82dfb8>, params: {"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "enrollment"=>{"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms | Allocations: 3223)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 148, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:24:36.100173000 +0000", updated_at: "2022-12-13 14:24:36.100173000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started DELETE "/api/v1/enrollments/148" for ::1 at 2022-12-13 11:45:14 -0300
+Processing by Api::V1::EnrollmentsController#destroy as */*
+  Parameters: {"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "enrollment"=>{"id"=>"148", "amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 148], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:46:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 148]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Destroy (0.4ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 280]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mBill Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 281]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mEnrollment Destroy (0.7ms)[0m  [1m[31mDELETE FROM "enrollments" WHERE "enrollments"."id" = $1[0m  [["id", 148]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:47:in `destroy'
+Completed 200 OK in 44ms (Views: 0.5ms | ActiveRecord: 7.1ms | Allocations: 14514)
+
+
+Started POST "/api/v1/enrollments" for ::1 at 2022-12-13 11:45:32 -0300
+Processing by Api::V1::EnrollmentsController#create as */*
+  Parameters: {"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6, "enrollment"=>{"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+[31mUnpermitted parameter: :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: create, request: #<ActionDispatch::Request:0x00007f2b290649a0>, params: {"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"create", "enrollment"=>{"amount"=>350, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Create (0.9ms)[0m  [1m[32mINSERT INTO "enrollments" ("amount", "installments", "due_day", "created_at", "updated_at", "student_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 350], ["installments", 2], ["due_day", 20], ["created_at", "2022-12-13 14:45:32.407688"], ["updated_at", "2022-12-13 14:45:32.407688"], ["student_id", 6]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:32:in `create'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:4:in `initialize'
+  [1m[36mCACHE Enrollment Load (0.0ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mBill Create (1.1ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 175], ["due_date", "2022-12-20"], ["status", "open"], ["created_at", "2022-12-13 14:45:32.420102"], ["updated_at", "2022-12-13 14:45:32.420102"], ["enrollment_id", 149]]
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mBill Create (0.9ms)[0m  [1m[32mINSERT INTO "bills" ("amount", "due_date", "status", "created_at", "updated_at", "enrollment_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["amount", 175], ["due_date", "2023-01-20"], ["status", "open"], ["created_at", "2022-12-13 14:45:32.431685"], ["updated_at", "2022-12-13 14:45:32.431685"], ["enrollment_id", 149]]
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/create_bills.rb:61:in `block in create_bills'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:36:in `create'
+Completed 200 OK in 60ms (Views: 2.6ms | ActiveRecord: 12.6ms | Allocations: 29365)
+
+
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:47:48 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f2b244bd510>, params: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 3.7ms | Allocations: 5223)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:50:08 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.5ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.5ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:9:in `puts'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+  [1m[36mBill Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 282]]
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+  [1m[36mBill Destroy (0.3ms)[0m  [1m[31mDELETE FROM "bills" WHERE "bills"."id" = $1[0m  [["id", 283]]
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/services/update_bills.rb:20:in `block in update_bills'
+Completed 500 Internal Server Error in 80ms (ActiveRecord: 19.5ms | Allocations: 60752)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fb1b8bd45e0 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation [#<Bill id: 282, amount: 175, due_date: "2022-12-20", status: "open", created_at: "2022-12-13 14:45:32.420102000 +0000", updated_at: "2022-12-13 14:45:32.420102000 +0000", enrollment_id: 149>, #<Bill id: 283, amount: 175, due_date: "2023-01-20", status: "open", created_at: "2022-12-13 14:45:32.431685000 +0000", updated_at: "2022-12-13 14:45:32.431685000 +0000", enrollment_id: 149>]>>):
+  
+app/services/update_bills.rb:22:in `update_bills'
+app/services/update_bills.rb:13:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:50:52 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:9:in `puts'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 5.4ms | Allocations: 7342)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fb1ace35778 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:22:in `update_bills'
+app/services/update_bills.rb:13:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:51:46 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/controllers/api/v1/enrollments_controller.rb:58: else without rescue is useless
+				else
+				^~~~
+/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/controllers/api/v1/enrollments_controller.rb:69: syntax error, unexpected `end', expecting end-of-input):
+  
+app/controllers/api/v1/enrollments_controller.rb:58: else without rescue is useless
+app/controllers/api/v1/enrollments_controller.rb:69: syntax error, unexpected `end', expecting end-of-input
+app/controllers/api/v1/enrollments_controller.rb:58: else without rescue is useless
+app/controllers/api/v1/enrollments_controller.rb:69: syntax error, unexpected `end', expecting end-of-input
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:52:06 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:9:in `puts'
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 6.5ms | Allocations: 7415)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x0000560edfaad310 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:22:in `update_bills'
+app/services/update_bills.rb:13:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:52:56 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:8:in `puts'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 5.9ms | Allocations: 7339)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fb1acabfc88 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:21:in `update_bills'
+app/services/update_bills.rb:12:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:53:27 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:8:in `puts'
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 5.0ms | Allocations: 7334)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fb1a43bef90 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:21:in `update_bills'
+app/services/update_bills.rb:12:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:54:54 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:6:in `initialize'
+Completed 404 Not Found in 20ms (ActiveRecord: 7.9ms | Allocations: 6585)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Bill with 'id'={:enrollment_id=>149}):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:55:31 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:6:in `initialize'
+Completed 404 Not Found in 20ms (ActiveRecord: 6.9ms | Allocations: 6464)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Bill with 'id'=149):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:55:54 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 3.9ms | Allocations: 6174)
+
+
+  
+NameError (undefined local variable or method `enrollment_id' for #<UpdateBills:0x00007fb1a067d2a8 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149>
+Did you mean?  @enrollment_id
+               @enrollment):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:57:40 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 3.9ms | Allocations: 5274)
+
+
+  
+ArgumentError (Unsupported argument type: 149 (Integer)):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:57:52 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:6:in `initialize'
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 5.9ms | Allocations: 10227)
+
+
+  
+NoMethodError (undefined method `each' for #<Bill id: 174, amount: 1000, due_date: "2022-12-29", status: "open", created_at: "2022-12-10 23:00:33.146029000 +0000", updated_at: "2022-12-10 23:00:33.146029000 +0000", enrollment_id: 58>):
+  
+app/services/update_bills.rb:18:in `update_bills'
+app/services/update_bills.rb:12:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:58:00 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+Completed 404 Not Found in 13ms (ActiveRecord: 5.1ms | Allocations: 5340)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Bill without an ID):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:59:02 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 3.0ms | Allocations: 6145)
+
+
+  
+NameError (undefined local variable or method `enrollment_id' for #<UpdateBills:0x00007fb1ad3893c8 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149>
+Did you mean?  @enrollment_id
+               @enrollment):
+  
+app/services/update_bills.rb:6:in `initialize'
+app/controllers/api/v1/enrollments_controller.rb:53:in `new'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 11:59:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:8:in `puts'
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 7.5ms | Allocations: 43229)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fcf64bf4510 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:21:in `update_bills'
+app/services/update_bills.rb:12:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:02:31 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 4.7ms | Allocations: 7333)
+
+
+  
+NoMethodError (undefined method `CreateBills' for #<UpdateBills:0x00007fcf65040bc8 @enrollment=#<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>, @enrollment_id=149, @bills=#<ActiveRecord::Relation []>>):
+  
+app/services/update_bills.rb:20:in `update_bills'
+app/services/update_bills.rb:10:in `charge'
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:04:56 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007fcf64ad6638>, params: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 6.4ms | Allocations: 9180)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:55:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:05:43 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007fcf6512aa48>, params: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 118ms (ActiveRecord: 5.5ms | Allocations: 9010)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:56:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:06:34 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 7.9ms | Allocations: 8897)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:56:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:07:34 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 5.9ms | Allocations: 8820)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:55:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:08:29 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 4.9ms | Allocations: 8827)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:56:in `update'
+Started GET "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:08:52 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#show as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:26:in `show'
+Completed 200 OK in 36ms (Views: 0.6ms | ActiveRecord: 4.2ms | Allocations: 37285)
+
+
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:09:04 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/services/update_bills.rb:4:in `initialize'
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:16:in `puts'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.9ms | Allocations: 7179)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:56:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:12:06 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+  [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 149]]
+  ↳ app/services/update_bills.rb:14:in `update_bills'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f67f4c90a78>, params: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 5.4ms | Allocations: 8496)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:55:in `update'
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:17:52 -0300
+  
+SyntaxError (/home/raissacardoso/github/backend-test-quero/backend/Bilinho/app/controllers/api/v1/enrollments_controller.rb:73: syntax error, unexpected `end', expecting end-of-input):
+  
+app/controllers/api/v1/enrollments_controller.rb:73: syntax error, unexpected `end', expecting end-of-input
+app/controllers/api/v1/enrollments_controller.rb:73: syntax error, unexpected `end', expecting end-of-input
+Started PUT "/api/v1/enrollments/149" for ::1 at 2022-12-13 12:18:26 -0300
+Processing by Api::V1::EnrollmentsController#update as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}}
+  [1m[36mEnrollment Load (0.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 149], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:52:in `update'
+[31mUnpermitted parameters: :id, :enrollment. Context: { controller: Api::V1::EnrollmentsController, action: update, request: #<ActionDispatch::Request:0x00007f6801074b38>, params: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "controller"=>"api/v1/enrollments", "action"=>"update", "id"=>"149", "enrollment"=>{"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6}} }[0m
+Completed 500 Internal Server Error in 76ms (ActiveRecord: 3.8ms | Allocations: 5260)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Enrollment id: 149, amount: 350, installments: 2, due_day: 20, created_at: "2022-12-13 14:45:32.407688000 +0000", updated_at: "2022-12-13 14:45:32.407688000 +0000", student_id: 6>
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/enrollments_controller.rb:53:in `update'
+Started GET "/api/v1/student/11" for ::1 at 2022-12-13 12:29:10 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/student/11"):
+  
+Started GET "/api/v1/students/11" for ::1 at 2022-12-13 12:29:15 -0300
+Processing by Api::V1::StudentsController#show as */*
+  Parameters: {"amount"=>450, "installments"=>2, "due_day"=>20, "student_id"=>6, "id"=>"11", "student"=>{}}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:23:in `show'
+Completed 200 OK in 22ms (Views: 0.6ms | ActiveRecord: 11.7ms | Allocations: 15880)
+
+
+Started PUT "/api/v1/students/11" for ::1 at 2022-12-13 12:29:45 -0300
+Processing by Api::V1::StudentsController#update as */*
+  Parameters: {"name"=>"Jurema", "cpf"=>"12378945228", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "id"=>"11", "student"=>{"name"=>"Jurema", "cpf"=>"12378945228", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}}
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:43:in `update'
+[31mUnpermitted parameters: :id, :student. Context: { controller: Api::V1::StudentsController, action: update, request: #<ActionDispatch::Request:0x00007f6800ddaa30>, params: {"name"=>"Jurema", "cpf"=>"12378945228", "birthdate"=>"1988-05-18", "payment_method"=>"boleto", "controller"=>"api/v1/students", "action"=>"update", "id"=>"11", "student"=>{"name"=>"Jurema", "cpf"=>"12378945228", "birthdate"=>"1988-05-18", "payment_method"=>"boleto"}} }[0m
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.2ms | Allocations: 3196)
+
+
+  
+NoMethodError (undefined method `update_attributes' for #<Student id: 11, name: "Jurema", cpf: "12378945228", birthdate: "1988-05-18", payment_method: "credit_card", created_at: "2022-12-11 02:44:39.304619000 +0000", updated_at: "2022-12-11 02:44:39.304619000 +0000">
+Did you mean?  update_attribute):
+  
+app/controllers/api/v1/students_controller.rb:44:in `update'

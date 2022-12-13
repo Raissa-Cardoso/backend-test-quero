@@ -28,14 +28,15 @@ module Api
 			end
 			# POST /enrollments
 			def create
-				enrollment = Enrollment.new(enrollment_params) 				           
-				if enrollment.save 		
-					#createBills=CreateBills.new() 	
-					#createBills.create_bills(self)		  
-         			bills=Bill.where(enrollment_id:enrollment.id)
-					render json: {id:enrollment.id,student_id:enrollment.student_id, amount:enrollment.amount,
-                        installments:enrollment.installments, due_day:enrollment.due_day,
-                        bills:bills}, status: :ok
+				enrollment = Enrollment.new(enrollment_params) 								           
+				if enrollment.save 
+					result = CreateBills.new({enrollment_id:enrollment.id}).charge
+					if result=="success" 	  
+						bills=Bill.where(enrollment_id:enrollment.id)
+						render json: {id:enrollment.id,student_id:enrollment.student_id, amount:enrollment.amount,
+							installments:enrollment.installments, due_day:enrollment.due_day,
+							bills:bills}, status: :ok
+					end
 				else
 					render json: {status: 'ERROR', message:'enrollments not saved', data:enrollment.erros},status: :unprocessable_entity
 				end
@@ -48,12 +49,18 @@ module Api
 			end
 			# PATCH/PUT /enrollments/1
 			def update
-				enrollment = Enrollment.find(params[:id])
-				if enrollment.update_attributes(enrollment_params)
-					render json: {status: 'SUCCESS', message:'Updated enrollment', data:enrollment},status: :ok
-				else
-					render json: {status: 'ERROR', message:'enrollments not update', data:enrollment.erros},status: :unprocessable_entity
-				end
+				enrollment = Enrollment.find(params[:id])		
+					if enrollment.update_attributes(enrollment_params)		
+						resultUpdate = UpdateBills.new({enrollment_id:enrollment.id}).charge
+						if resultUpdate=="success" 	
+							result = CreateBills.new({enrollment_id:enrollment.id}).charge	
+							if result=="success" 
+								render json: {status: 'SUCCESS', message:'Updated enrollment', data:enrollment},status: :ok		
+							end
+						end	
+					else
+						render json: {status: 'ERROR', message:'Enrollments not update', data:enrollment.erros},status: :unprocessable_entity
+					end				
 			end
 			# Only allow a list of trusted parameters through.
 			private
