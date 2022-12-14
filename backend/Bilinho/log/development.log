@@ -12171,3 +12171,226 @@ Processing by Api::V1::StudentsController#index as */*
 Completed 200 OK in 16ms (Views: 1.1ms | ActiveRecord: 2.3ms | Allocations: 3032)
 
 
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-14 10:14:26 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.6ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:11:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.5ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (23.88ms)
+Completed 200 OK in 77ms (Views: 22.7ms | ActiveRecord: 7.9ms | Allocations: 58670)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-14 10:14:38 -0300
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "bill"=>{}}
+  [1m[36mBill Load (0.4ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (11.06ms)
+Completed 200 OK in 102ms (Views: 100.9ms | ActiveRecord: 0.4ms | Allocations: 16039)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-14 10:23:21 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BillsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "bill"=>{}}
+  [1m[36mBill Load (0.6ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.37ms)
+Completed 200 OK in 60ms (Views: 31.6ms | ActiveRecord: 6.1ms | Allocations: 51361)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-14 10:23:37 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (1.2ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:11:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.2ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:22:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (11.2ms)
+Completed 200 OK in 112ms (Views: 11.7ms | ActiveRecord: 5.1ms | Allocations: 20894)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:23:47 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.23ms)
+Completed 200 OK in 15ms (Views: 0.8ms | ActiveRecord: 3.7ms | Allocations: 16083)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT VERSION()[0m
+  ↳ (erb):38:in `migration_template'
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:27:21 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20221214132638_devise_token_auth_create_users.rb
+
+
+):
+  
+activerecord (7.0.4) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.4) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.4) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (7.0.4) lib/active_record/migration.rb:597:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20221214132638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "provider" character varying DEFAULT 'username' NOT NULL, "username" character varying DEFAULT 'admin_ops' NOT NULL, "password" character varying DEFAULT 'billing' NOT NULL, "tokens" json, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35m (13.4ms)[0m  [1m[35mCREATE INDEX "index_users_on_password" ON "users" ("password")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221214132638"]]
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:38:24 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.54ms)
+Completed 200 OK in 32ms (Views: 2.4ms | ActiveRecord: 3.9ms | Allocations: 37299)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20221214132638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP INDEX  "index_users_on_password"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP INDEX  "index_users_on_username"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221214132638"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20221214132638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (20.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "provider" character varying DEFAULT 'username' NOT NULL, "username" character varying NOT NULL, "password" character varying NOT NULL, "tokens" json, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE INDEX "index_users_on_username" ON "users" ("username")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_users_on_password" ON "users" ("password")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221214132638"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:40:41 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.28ms)
+Completed 200 OK in 41ms (Views: 3.5ms | ActiveRecord: 4.4ms | Allocations: 37299)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:41:53 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 3.7ms | Allocations: 3317)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:42:58 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 3.4ms | Allocations: 3257)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:43:50 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 2.9ms | Allocations: 3255)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-14 10:43:52 -0300
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.3ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:11:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.26ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 1089)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20221214132638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP INDEX  "index_users_on_password"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP INDEX  "index_users_on_username"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20221214132638"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1182092979748971780)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
