@@ -49,18 +49,20 @@ module Api
 			end
 			# PATCH/PUT /enrollments/1
 			def update
-				enrollment = Enrollment.find(params[:id])		
-					if enrollment.update_attributes(enrollment_params)		
+				enrollment = Enrollment.find(params[:id])										
+					if enrollment.update(enrollment_params)	
 						resultUpdate = UpdateBills.new({enrollment_id:enrollment.id}).charge
-						if resultUpdate=="success" 	
-							result = CreateBills.new({enrollment_id:enrollment.id}).charge	
-							if result=="success" 
-								render json: {status: 'SUCCESS', message:'Updated enrollment', data:enrollment},status: :ok		
-							end
-						end	
-					else
-						render json: {status: 'ERROR', message:'Enrollments not update', data:enrollment.erros},status: :unprocessable_entity
-					end				
+						if resultUpdate=="success" 														
+							results=CreateBills.new({enrollment_id:enrollment.id}).charge										
+							if results=="success" 								 
+								render json: {status: 'SUCCESS', message:'Updated enrollment', data:enrollment},status: :ok
+							else
+								render json: {status: 'ERROR', message:'Enrollments not update', data:enrollment.erros},status: :unprocessable_entity
+							end	
+						else
+							render json: {status: 'ERROR', message:'Enrollments not update', data:enrollment.erros},status: :unprocessable_entity
+						end							
+					end			
 			end
 			# Only allow a list of trusted parameters through.
 			private
