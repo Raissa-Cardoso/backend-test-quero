@@ -16,7 +16,7 @@ module Api
 					})
 					count+=1
 				end        
-				render json: {page: params["page"], items:studentCount},status: :ok
+				render json: {page: params["page"], items:studentCount},status: :ok				
 			end
 			# GET /students/1
 			def show
@@ -41,7 +41,7 @@ module Api
 			# PATCH/PUT /students/1
 			def update
 				student = Student.find(params[:id])
-				if student.update_attributes(student_params)
+				if student.update(student_params)
 					render json: {status: 'SUCCESS', message:'Updated student', data:student},status: :ok
 				else
 					render json: {status: 'ERROR', message:'students not update', data:student.erros},status: :unprocessable_entity
