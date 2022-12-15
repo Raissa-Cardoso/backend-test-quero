@@ -7,10 +7,6 @@
                                               
                     </li>   
                     <li>
-                        <a href="">Instituições</a>                        
-                        
-                    </li>
-                    <li>
                         <a href="">Alunos</a> 
                     </li>
                     <li>

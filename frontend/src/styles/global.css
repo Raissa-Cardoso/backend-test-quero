@@ -1,9 +1,11 @@
 :root {
-    --color-background:#FFF;
     --color-background-nav:#202020;
     --color-background-home:#FFF;
+    --color-background-table:#fafafa;
     --color-table-hover:#dedede;
     --color-text-link:#FFF;
+    --border-box: 1px solid rgba(245, 236, 236, 0.4);
+    --border-box-shadow:1px 2x 2px black;
 }
 *{
     padding:0;
@@ -12,7 +14,10 @@
     font-family: sans-serif;
 }
 html, body{
-    background-color: var(--color-background);
+    background-color: var(--color-background-home);
+}
+main{
+    background-color: var(--color-background-home);
 }
 a{
     text-decoration: none;
@@ -34,6 +39,7 @@ main{
 table{
     width: 90%;
     margin: 20px;
+    background-color: var(--color-background-home);
 }
 tbody tr:hover{
     background-color: var(--color-table-hover);
@@ -43,4 +49,77 @@ th, td {
     margin-bottom: 30px;
     padding: 15px;
     text-align: center;
+    min-width: 50px;
 }
+.divTable{
+    overflow-y: scroll;
+    height: 600px; 
+    width: 80%;   
+    border: var(--border-box);
+    box-shadow:var(--border-box-shadow);
+    margin: 20px;
+    background-color: var(--color-background-table);;
+}
+.tableHeader{
+    margin-left: 20px;
+    margin-bottom: 20px; 
+    height: 40px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+}
+.tableHeader button{
+    width: 80px;
+    height: 30px;
+}
+.tableSearch{       
+    height: 40px;
+    width: 40%;
+}
+.tableSearch input{
+    height: 30px;
+    margin-right: 5px;  
+}
+.divForm{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 80%;
+    height: 60px;    
+    align-items: center;    
+}
+.divForm label{
+    margin-right: 10px;
+    width: 250px;
+}
+.divForm input{
+    width: 600px;
+    height: 40px;    
+}
+form{
+    display: flex;
+    flex-direction: column;   
+    height: 50vh;  
+    width: 70%;
+    margin: 20px;
+    padding: 20px;
+    border: var(--border-box);
+    box-shadow:var(--border-box-shadow);
+    background-color: var(--color-background-table);;
+}
+.divButtons{    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+    width: 600px;
+    margin-top: 20px;  
+    margin-right: 100px; 
+}
+.buttonCreate button, .buttonBack button, .buttonUpdate button, .buttonDelete button{
+    width: 80px;
+    height: 30px;
+}
+
+
