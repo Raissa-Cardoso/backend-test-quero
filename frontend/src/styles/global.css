@@ -1,10 +1,9 @@
 :root {
-    --color-background:#F3F3F3;
-    --color-background-nav:#2B3D50;
-    --color-background-home:#344960;
-    --color-text-light:#EDEDED;
-    --color-text-title:#FF5555;
-    --color-text-dark:#3D3D3D;
+    --color-background:#FFF;
+    --color-background-nav:#202020;
+    --color-background-home:#FFF;
+    --color-table-hover:#dedede;
+    --color-text-link:#FFF;
 }
 *{
     padding:0;
@@ -18,7 +17,30 @@ html, body{
 a{
     text-decoration: none;
     transition: 0.2s opacity;
+    color: var(--color-text-link);
 }
-a:hover{
-    opacity:0.8;
+a:hover, a.selected{
+    opacity:0.4;
+}
+h1{
+    margin: 20px;
+}
+main{
+    width: 100%;
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+}
+table{
+    width: 90%;
+    margin: 20px;
+}
+tbody tr:hover{
+    background-color: var(--color-table-hover);
+}
+th, td {
+    border: 1px solid;
+    margin-bottom: 30px;
+    padding: 15px;
+    text-align: center;
 }
