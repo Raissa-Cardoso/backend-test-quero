@@ -3,23 +3,14 @@ module Api
 		class EnrollmentsController < ApplicationController
 			
 			# GET /enrollments
-			def index        
-				enrollments = Enrollment.order('created_at ASC'); 				             
-				enrollmentCount = []
-				count=0
-				while count<params["count"] do 
-					bills=Bill.where(enrollment_id:enrollments[count].id)
-					enrollmentCount.push({
-						id:enrollments[count].id,
-						student_id:enrollments[count].student_id,
-						amount:enrollments[count].amount,
-						installments:enrollments[count].installments,
-						due_day:enrollments[count].due_day,
-						bills:bills
-					})          
-					count+=1
-				end  
-				render json: {page: params["page"], items:enrollmentCount},status: :ok
+			def index 
+				enrollments=Enrollment.order('created_at ASC')
+				if !params["count"] || !params["page"] 
+					render json: enrollments,status: :ok
+				else
+					result = ViewerEnrollments.new({count:params["count"], page:params["page"]}).charge	             
+					render json: {page: params["page"], items:result},status: :ok
+				end
 			end
 			# GET /enrollments/1
 			def show

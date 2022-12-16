@@ -3,20 +3,13 @@ module Api
 		class StudentsController < ApplicationController
 			# GET /students
 			def index        
-				students = Student.order('created_at ASC');                
-				studentCount = []
-				count=0
-				while count<params["count"] do 
-					studentCount.push({
-						id:students[count].id, 
-						name:students[count].name, 
-						cpf:students[count].cpf,
-						birthdate:students[count].birthdate, 
-						payment_method:students[count].payment_method
-					})
-					count+=1
-				end        
-				render json: {page: params["page"], items:studentCount},status: :ok				
+				students = Student.order('created_at ASC'); 				            
+				if !params["count"] || !params["page"] 
+					render json: students,status: :ok
+				else
+					result = ViewerStudents.new({count:params["count"], page:params["page"]}).charge	             
+					render json: {page: params["page"], items:result},status: :ok
+				end		
 			end
 			# GET /students/1
 			def show

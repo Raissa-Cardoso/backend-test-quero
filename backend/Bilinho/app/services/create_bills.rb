@@ -6,8 +6,7 @@ class CreateBills
         @due_day=@enrollment.due_day
         @enrollment_amount=@enrollment.amount
         @installments=@enrollment.installments
-        @bills=[] 
-        puts @enrollment_id       
+        @bills=[]               
     end
 
     def charge        
