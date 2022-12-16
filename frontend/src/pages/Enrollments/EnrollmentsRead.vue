@@ -18,7 +18,7 @@
                         <th>ID do aluno</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>                    
                     <tr v-for="(enrollment,index) in enrollmentsFilter" :key="index">
                         <td>{{enrollment.id}} </td>
                         <td>{{enrollment.amount}}</td>
@@ -33,8 +33,7 @@
  </template>
  
  <script>
- //import api from '@/services/api.js'
- import axios from 'axios';
+ import api from '@/services/api.js'; 
 
  export default {
      name: 'EnrollmentsRead',
@@ -47,17 +46,10 @@
         }
      },
      async mounted(){
-        await axios({method: 'get',url:'http://localhost:3000/api/v1/enrollments',
-            headers: {
-                ContentType:"application/json"                
-            }, 
-            data:{
-                "page":1,
-                "count":3
-            }
-            }).then(response=>{
-                this.enrollments=response.data;                
-            })
+        api.get('/enrollments').then(response=>{
+            this.enrollments=response.data;  
+            this.enrollmentsFilter=response.data;                     
+        })
      },
      methods: {
         search: function(){                      

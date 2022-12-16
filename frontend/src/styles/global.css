@@ -1,11 +1,12 @@
 :root {
     --color-background-nav:#202020;
     --color-background-home:#FFF;
-    --color-background-table:#fafafa;
+    --color-background-table:#f1f5f7;
     --color-table-hover:#dedede;
     --color-text-link:#FFF;
     --border-box: 1px solid rgba(245, 236, 236, 0.4);
     --border-box-shadow:1px 2x 2px black;
+    --font-size:14px;
 }
 *{
     padding:0;
@@ -67,19 +68,33 @@ th, td {
     width: 90%;
     display: flex;
     flex-direction: row;  
-    align-items: center;
+    align-items: center; 
 }
 .tableHeader button{
     width: 80px;
-    height: 30px;
+    height: 40px; 
+    font-size: var(--font-size);
 }
-.tableSearch{       
+.tableHeader .create{
+    align-items: flex-start;
     height: 40px;
-    width: 40%;
+}
+.tableHeader .create a, .buttonBack button a, .divTable a{
+    color: #000000;    
+}
+.tableSearch{  
+    display: flex;     
+    flex-direction: row;
+    height: 40px;
+    width: 30%;
+    align-items: center;    
 }
 .tableSearch input{
-    height: 30px;
-    margin-right: 5px;  
+    height: 40px;
+    margin-right: 5px; 
+    width: 80%; 
+    font-size: var(--font-size);
+    padding: 6px;
 }
 .divForm{
     display: flex;
@@ -117,7 +132,7 @@ form{
     margin-top: 20px;  
     margin-right: 100px; 
 }
-.buttonCreate button, .buttonBack button, .buttonUpdate button, .buttonDelete button{
+.buttonCreate button, .buttonBack button, .buttonUpdate button, .buttonDelete button, .buttonBack button{
     width: 80px;
     height: 30px;
 }

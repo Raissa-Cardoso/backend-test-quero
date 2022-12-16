@@ -5,7 +5,12 @@
             <div class="tableSearch">
                 <input type="text" placeholder="Digite o ID do Aluno" v-model="studentId"/>
                 <button type="submit" v-on:click="search">Filtrar</button>
-            </div>          
+            </div> 
+            <div class="create">                        
+                <button>
+                    <router-link to="/studentsCreate">Criar novo</router-link>                     
+                </button>
+            </div>         
         </div>
         <div class="divTable">
             <table className='studentsTable'>
@@ -20,7 +25,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="(student,index) in studentsFilter" :key="index">
-                        <td>{{student.id}} </td>
+                        
+                        <td> <router-link :to="`/studentsUpdateDelete/${student.id}`">{{student.id}}</router-link></td>
                         <td>{{student.name}}</td>
                         <td>{{student.cpf}}</td>
                         <td>{{student.birthdate}}</td>
@@ -33,8 +39,7 @@
  </template>
  
  <script>
- //import api from '@/services/api.js'
- import axios from 'axios';
+ import api from '@/services/api.js';
 
  export default {
      name: 'StudentsRead',
@@ -46,30 +51,12 @@
             studentIdInt:''            
         }
      },
-     async mounted(){
-        await axios({method: 'get',url:'http://localhost:3000/api/v1/students',
-            headers: {
-                ContentType:"application/json"                
-            }, 
-            data:{
-                "page":1,
-                "count":3
-            }
-            }).then(response=>{
-                this.students=response.data;
-                console.log(this.students)
-            })
-     },
-        /*api.get('/students',{
-            data:{
-                    "page":1,
-                    "count":3
-                }
-        }).then(response=>{
-            this.students=response.data;
-            console.log(this.students)
+     mounted(){  
+        api.get('/students').then(response=>{
+            this.students=response.data;  
+            this.studentsFilter=response.data;                     
         })
-     }*/
+     },   
      methods: {
         search: function(){                      
             if (this.studentId!==""){

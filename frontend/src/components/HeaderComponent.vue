@@ -2,18 +2,17 @@
     <header>
         <nav class="container">
             <ul class="navegacao">
-                    <li>  
-                        <a to="/"  class="selected" href="/">Home</a>                
-                                              
+                    <li>                         
+                        <router-link to="/" class="selected">Home</router-link>      
                     </li>   
                     <li>
-                        <a href="">Alunos</a> 
+                        <router-link to="/studentsRead">Alunos</router-link>                         
                     </li>
                     <li>
-                        <a href="">Matrículas</a>
+                        <router-link to="/enrollmentsRead">Matrículas</router-link> 
                     </li>
                     <li>
-                        <a href="">Faturas</a>
+                        <router-link to="/billsRead">Faturas</router-link>  
                     </li>
                 </ul>
         </nav>

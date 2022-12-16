@@ -4,26 +4,28 @@
             <form action="" method="">
                 <div class="divForm">
                     <label for="name">Nome:</label>
-                    <input type="text" id="name" />
+                    <input type="text" id="name" v-model="name"/>
                 </div>
                 <div class="divForm">
                     <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" />
+                    <input type="text" id="cpf" v-model="cpf"/>
                 </div>
                 <div class="divForm">
                     <label for="birthdate">Data de nascimento:</label>
-                    <input type="text" id="birthdate" />  
+                    <input type="text" id="birthdate" v-model="birthdate"/>  
                 </div>
                 <div class="divForm">
                     <label for="payment_method">Método de pagamento:</label>
-                    <input type="text" id="payment_method" />  
+                    <input type="text" id="payment_method" v-model="paymentMethod"/>  
                 </div>
                 <div class="divButtons">
                     <div class="buttonCreate">                    
-                        <button>Cadastrar</button>
+                        <button v-on:click="create">Cadastrar</button>
                     </div>
                     <div class="buttonBack">                    
-                        <button>Voltar</button>
+                        <button>
+                            <router-link to="/studentsRead">Voltar</router-link> 
+                        </button>
                     </div>
                 </div>
             </form>       
@@ -31,44 +33,36 @@
  </template>
  
  <script>
- //import api from '@/services/api.js'
- //import axios from 'axios';
-
+ import api from '@/services/api.js';
+ 
  export default {
-     name: 'StudentsCreate'
- }
-   /*  data(){
+    name: 'StudentsCreate', 
+    data(){
         return {
-            enrollments:[],
-            enrollmentsFilter:[],
-            enrollmentId:'', 
-            enrollmentIdInt:''            
+            name:"",
+            cpf:"",
+            birthdate:"",
+            paymentMethod:""
         }
-     },
-     async mounted(){
-        await axios({method: 'get',url:'http://localhost:3000/api/v1/enrollments',
-            headers: {
-                ContentType:"application/json"                
-            }, 
-            data:{
-                "page":1,
-                "count":3
-            }
-            }).then(response=>{
-                this.enrollments=response.data;                
-            })
      },
      methods: {
-        search: function(){                      
-            if (this.enrollmentId!==""){
-                this.enrollmentIdInt=parseInt(this.enrollmentId)  
-                this.enrollmentsFilter=this.enrollments.filter(enrollment=>enrollment.id===this.enrollmentIdInt)            
-            } else{
-                this.enrollmentsFilter=this.enrollments 
-            }
+        create: function(){             
+            api.post('/students', 
+            {
+                name:this.name,
+                cpf:this.cpf, 
+                birthdate:this.birthdate,                    
+                payment_method: this.paymentMethod                
+            })/*.then(response=>{
+                alert(response)
+                alert("Aluno criado com sucesso")
+            }).catch(error=>{
+                alert(error)
+                alert("Aluno não foi criado")
+            })*/
         }
      }
-    }*/
+ }
  </script>
  
  <style scoped>     

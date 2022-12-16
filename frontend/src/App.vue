@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <HeaderComponent/>
+    <router-view/>
     <!--<HomePage/>-->
-    <!--<StudentsRead/>--> 
+    <!--<StudentsRead/>-->
     <!--<StudentsCreate/>-->
-    <StudentsUpdateDelete/>
-    <!--<BillsRead/>-->  
-    <!--<EnrollmentsRead/>--> 
+    <!--<StudentsUpdateDelete/>-->
+    <!--<BillsRead/>-->
+    <!--<EnrollmentsRead/>-->
     <!--<EnrollmentsCreate/>-->
     <!--<EnrollmentsUpdateDelete/>-->
   </div>
@@ -19,7 +20,7 @@ import HeaderComponent from './components/HeaderComponent'
 //import HomePage from './pages/HomePage'
 //import StudentsRead from './pages/Students/StudentsRead'
 //import StudentsCreate from './pages/Students/StudentsCreate';
-import StudentsUpdateDelete from './pages/Students/StudentsUpdateDelete';
+//import StudentsUpdateDelete from './pages/Students/StudentsUpdateDelete';
 //import BillsRead from './pages/Bills/BillsRead'
 //import EnrollmentsRead from './pages/Enrollments/EnrollmentsRead';
 //import EnrollmentsCreate from './pages/Enrollments/EnrollmentsCreate'
@@ -33,7 +34,7 @@ export default {
     //HomePage,
     //StudentsRead
     //StudentsCreate
-    StudentsUpdateDelete
+    //StudentsUpdateDelete
     //BillsRead
     //EnrollmentsRead
     //EnrollmentsCreate

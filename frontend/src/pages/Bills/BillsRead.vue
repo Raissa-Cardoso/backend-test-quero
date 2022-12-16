@@ -47,7 +47,8 @@
      },
      mounted(){
         api.get('/bills').then(response=>{
-            this.bills=response.data;            
+            this.bills=response.data; 
+            this.billsFilter=response.data;           
         })
      },
      methods: {
