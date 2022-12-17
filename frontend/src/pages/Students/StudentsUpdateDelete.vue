@@ -44,9 +44,7 @@
 
 
  export default {
-     name: 'StudentsUpdateDelete',
-     
- 
+     name: 'StudentsUpdateDelete',    
      data(){
         return {
             student:[],

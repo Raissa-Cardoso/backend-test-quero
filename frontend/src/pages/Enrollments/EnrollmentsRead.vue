@@ -5,7 +5,12 @@
             <div class="tableSearch">
                 <input type="text" placeholder="Digite o ID da Matrícula" v-model="enrollmentId"/>
                 <button type="submit" v-on:click="search">Filtrar</button>
-            </div>          
+            </div> 
+            <div class="create">                        
+                <button>
+                    <router-link to="/enrollmentsCreate">Criar nova</router-link>                     
+                </button>
+            </div>              
         </div>
         <div class="divTable">
             <table className='enrollmentsTable'>
@@ -20,7 +25,7 @@
                 </thead>
                 <tbody>                    
                     <tr v-for="(enrollment,index) in enrollmentsFilter" :key="index">
-                        <td>{{enrollment.id}} </td>
+                        <td><router-link :to="`/enrollmentsUpdateDelete/${enrollment.id}`">{{enrollment.id}}</router-link></td>
                         <td>{{enrollment.amount}}</td>
                         <td>{{enrollment.installments}}</td>
                         <td>{{enrollment.due_day}}</td>
@@ -45,7 +50,7 @@
             enrollmentIdInt:''            
         }
      },
-     async mounted(){
+     mounted(){
         api.get('/enrollments').then(response=>{
             this.enrollments=response.data;  
             this.enrollmentsFilter=response.data;                     

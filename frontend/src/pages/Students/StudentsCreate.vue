@@ -53,13 +53,8 @@
                 cpf:this.cpf, 
                 birthdate:this.birthdate,                    
                 payment_method: this.paymentMethod                
-            })/*.then(response=>{
-                alert(response)
-                alert("Aluno criado com sucesso")
-            }).catch(error=>{
-                alert(error)
-                alert("Aluno não foi criado")
-            })*/
+            })
+            window.open("/studentsRead")
         }
      }
  }

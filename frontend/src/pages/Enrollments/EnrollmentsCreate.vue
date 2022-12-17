@@ -3,27 +3,29 @@
         <h1>Cadastro de nova matrícula</h1>
             <form action="" method="">
                 <div class="divForm">
-                    <label for="enrollmentAmount">Valor total do curso em reais:</label>
-                    <input type="text" id="enrollmentAmount" />
+                    <label for="amount">Valor total do curso em reais:</label>
+                    <input type="text" id="amount"  v-model="amount"/>
                 </div>
                 <div class="divForm">
                     <label for="installments">Quantidade de faturas:</label>
-                    <input type="text" id="installments" />
+                    <input type="text" id="installments"  v-model="installments"/>
                 </div>
                 <div class="divForm">
                     <label for="dueDay">Dia de vencimento das faturas:</label>
-                    <input type="text" id="dueDay" />  
+                    <input type="text" id="dueDay"  v-model="dueDay"/>  
                 </div>
                 <div class="divForm">
                     <label for="studentID">ID do aluno:</label>
-                    <input type="text" id="studentID" />  
+                    <input type="text" id="studentID"  v-model="studentID"/>  
                 </div>
                 <div class="divButtons">
                     <div class="buttonCreate">                    
-                        <button>Cadastrar</button>
+                        <button v-on:click="create">Cadastrar</button>
                     </div>
                     <div class="buttonBack">                    
-                        <button>Voltar</button>
+                        <button>
+                            <router-link to="/enrollmentsRead">Voltar</router-link> 
+                        </button>
                     </div>
                 </div>
             </form>                  
@@ -31,44 +33,32 @@
  </template>
  
  <script>
- //import api from '@/services/api.js'
- //import axios from 'axios';
+ import api from '@/services/api.js'
+ 
 
  export default {
-     name: 'EnrollmentsCreate'
- }
-   /*  data(){
+     name: 'EnrollmentsCreate',
+     data(){
         return {
-            enrollments:[],
-            enrollmentsFilter:[],
-            enrollmentId:'', 
-            enrollmentIdInt:''            
+            amount:"",
+            installments:"",
+            dueDay:"",
+            studentID:""            
         }
-     },
-     async mounted(){
-        await axios({method: 'get',url:'http://localhost:3000/api/v1/enrollments',
-            headers: {
-                ContentType:"application/json"                
-            }, 
-            data:{
-                "page":1,
-                "count":3
-            }
-            }).then(response=>{
-                this.enrollments=response.data;                
-            })
      },
      methods: {
-        search: function(){                      
-            if (this.enrollmentId!==""){
-                this.enrollmentIdInt=parseInt(this.enrollmentId)  
-                this.enrollmentsFilter=this.enrollments.filter(enrollment=>enrollment.id===this.enrollmentIdInt)            
-            } else{
-                this.enrollmentsFilter=this.enrollments 
-            }
+        create: function(){             
+            api.post('/enrollments', 
+            {
+                amount:this.amount,
+                installments:this.installments,
+                due_day:this.dueDay,
+                student_id:this.studentID
+            })
+            window.open("/enrollmentsRead")
         }
      }
-    }*/
+ } 
  </script>
  
  <style scoped>     

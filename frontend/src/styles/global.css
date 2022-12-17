@@ -1,7 +1,7 @@
 :root {
     --color-background-nav:#202020;
     --color-background-home:#FFF;
-    --color-background-table:#f1f5f7;
+    --color-background-table:rgb(247, 247, 247);
     --color-table-hover:#dedede;
     --color-text-link:#FFF;
     --border-box: 1px solid rgba(245, 236, 236, 0.4);
@@ -25,7 +25,7 @@ a{
     transition: 0.2s opacity;
     color: var(--color-text-link);
 }
-a:hover, a.selected{
+a:hover, .router-link-active{
     opacity:0.4;
 }
 h1{
@@ -70,7 +70,7 @@ th, td {
     flex-direction: row;  
     align-items: center; 
 }
-.tableHeader button{
+.tableHeader button, .buttonCreate button, .buttonBack button, .buttonUpdate button, .buttonDelete button, .buttonBack button{
     width: 80px;
     height: 40px; 
     font-size: var(--font-size);
@@ -99,6 +99,7 @@ th, td {
 .divForm{
     display: flex;
     flex-direction: row;
+    margin: 10px;
     padding: 10px;
     width: 80%;
     height: 60px;    
@@ -109,13 +110,17 @@ th, td {
     width: 250px;
 }
 .divForm input{
-    width: 600px;
-    height: 40px;    
+    width: 80%;
+    height: 50px;  
+    font-size: var(--font-size);
+    padding: 6px;  
 }
 form{
     display: flex;
-    flex-direction: column;   
-    height: 50vh;  
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    height: 55vh;  
     width: 70%;
     margin: 20px;
     padding: 20px;
@@ -127,14 +132,10 @@ form{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-self: center;
-    width: 600px;
-    margin-top: 20px;  
-    margin-right: 100px; 
+    align-self: flex-end;
+    width: 80%;
+    margin-top: 30px;    
 }
-.buttonCreate button, .buttonBack button, .buttonUpdate button, .buttonDelete button, .buttonBack button{
-    width: 80px;
-    height: 30px;
-}
+
 
 
