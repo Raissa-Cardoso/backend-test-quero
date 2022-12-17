@@ -7,8 +7,20 @@ module Api
 				if !params["count"] || !params["page"] 
 					render json: students,status: :ok
 				else
-					result = ViewerStudents.new({count:params["count"], page:params["page"]}).charge	             
-					render json: {page: params["page"], items:result},status: :ok
+					studentsCount=[]
+					count=0
+					while count<params["count"]  do 
+						studentsCount.push({
+							id:students[count].id, 
+							name:students[count].name, 
+							cpf:students[count].cpf,
+							birthdate:students[count].birthdate, 
+							payment_method:students[count].payment_method
+						})
+						count+=1
+					end     
+					#result = ViewerStudents.new({count:params["count"], page:params["page"]}).charge	             
+					render json: {page: params["page"], items:studentsCount},status: :ok
 				end		
 			end
 			# GET /students/1

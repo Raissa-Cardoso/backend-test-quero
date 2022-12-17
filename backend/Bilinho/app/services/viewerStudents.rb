@@ -1,15 +1,17 @@
 class ViewerStudents
-    def initialize(params={})             
+    def initialize(params={})              
         @students=Students.order('created_at ASC')
         @studentsCount=[]
         @page=params[:page]
-        @count=params[:count]    
+        @count=params[:count] 
+        puts "OK"  
+        puts @page, @count
     end
 
     def charge
         view
     end
-
+ 
     private
 
     def view      
