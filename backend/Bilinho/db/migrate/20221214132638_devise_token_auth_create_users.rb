@@ -4,34 +4,35 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.0]
     create_table(:users) do |t|
       ## Required
       t.string :provider, :null => false, :default => "username"
-      #t.string :uid, :null => false, :default => ""
+      t.string :uid, :null => false, :default => ""
 
       ## Database authenticatable
-      #t.string :encrypted_password, :null => false, :default => ""
+      t.string :encrypted_password, :null => false, :default => ""
 
       ## Recoverable
-      #t.string   :reset_password_token
-      #3t.datetime :reset_password_sent_at
-      #t.boolean  :allow_password_change, :default => false
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+      t.boolean  :allow_password_change, :default => false
 
       ## Rememberable
-      #t.datetime :remember_created_at
+      t.datetime :remember_created_at
 
       ## Confirmable
-      #t.string   :confirmation_token
-      #t.datetime :confirmed_at
-      #t.datetime :confirmation_sent_at
-      #t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
 
       ## User Info
-      t.string :username, null: false
-      t.string :password, null: false   
-      #t.string :email
+      t.string :email, default: "devise@email.com"
+      t.string :username, default: "admin_ops"
+      t.string :password, default: "billing"
+      
 
       ## Tokens
       t.json :tokens
@@ -41,9 +42,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.0]
 
     add_index :users, :username
     add_index :users, :password
-    #add_index :users, [:uid, :provider],     unique: true
-    #add_index :users, :reset_password_token, unique: true
-    #add_index :users, :confirmation_token,   unique: true
-    # add_index :users, :unlock_token,         unique: true
+    add_index :users, :email
+    add_index :users, [:uid, :provider],     unique: true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
+    add_index :users, :unlock_token,         unique: true
   end
 end

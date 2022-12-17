@@ -1,6 +1,6 @@
 module Api
 	module V1
-		class EnrollmentsController < ApplicationController
+		class EnrollmentsController < ApplicationController			
 			
 			# GET /enrollments
 			def index 
