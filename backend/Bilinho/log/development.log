@@ -20308,3 +20308,102 @@ puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
 puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
 puma (5.6.5) lib/puma/server.rb:443:in `process_client'
 puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/students" for ::1 at 2022-12-17 18:55:42 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::StudentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "student"=>{}}
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 42ms (Views: 1.4ms | ActiveRecord: 5.7ms | Allocations: 37327)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-17 18:55:47 -0300
+Processing by Api::V1::EnrollmentsController#index as */*
+  Parameters: {"page"=>1, "count"=>3, "enrollment"=>{}}
+  [1m[36mEnrollment Load (0.5ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/services/viewerEnrollments.rb:19:in `view'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 58]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:12:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 62]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:12:in `index'
+[active_model_serializers]   [1m[36mBill Load (0.3ms)[0m  [1m[34mSELECT "bills".* FROM "bills" WHERE "bills"."enrollment_id" = $1[0m  [["enrollment_id", 67]]
+[active_model_serializers]   ↳ app/controllers/api/v1/enrollments_controller.rb:12:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (20.29ms)
+Completed 200 OK in 158ms (Views: 18.0ms | ActiveRecord: 10.3ms | Allocations: 37665)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-17 19:15:32 -0300
+Processing by Api::V1::StudentsController#index as HTML
+  [1m[36mStudent Load (0.7ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.42ms)
+Completed 200 OK in 23ms (Views: 8.9ms | ActiveRecord: 5.3ms | Allocations: 12605)
+
+
+Started GET "/api/v1/students/15" for ::1 at 2022-12-17 19:15:39 -0300
+Processing by Api::V1::StudentsController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mStudent Load (0.9ms)[0m  [1m[34mSELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/students_controller.rb:28:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.35ms)
+Completed 200 OK in 17ms (Views: 4.3ms | ActiveRecord: 1.6ms | Allocations: 1445)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-17 19:15:41 -0300
+Processing by Api::V1::StudentsController#index as HTML
+  [1m[36mStudent Load (6.2ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.43ms)
+Completed 200 OK in 27ms (Views: 18.6ms | ActiveRecord: 6.2ms | Allocations: 3135)
+
+
+Started GET "/api/v1/students" for ::1 at 2022-12-17 19:15:44 -0300
+Processing by Api::V1::StudentsController#index as HTML
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/students_controller.rb:8:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.23ms)
+Completed 200 OK in 22ms (Views: 19.6ms | ActiveRecord: 1.0ms | Allocations: 3112)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-17 19:15:45 -0300
+Processing by Api::V1::EnrollmentsController#index as HTML
+  [1m[36mEnrollment Load (1.3ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (16.2ms)
+Completed 200 OK in 57ms (Views: 39.5ms | ActiveRecord: 1.3ms | Allocations: 10953)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-17 19:15:54 -0300
+Processing by Api::V1::EnrollmentsController#index as HTML
+  [1m[36mEnrollment Load (1.4ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (17.4ms)
+Completed 200 OK in 35ms (Views: 31.3ms | ActiveRecord: 1.4ms | Allocations: 5489)
+
+
+Started GET "/api/v1/enrollments/62" for ::1 at 2022-12-17 19:15:56 -0300
+Processing by Api::V1::EnrollmentsController#show as HTML
+  Parameters: {"id"=>"62"}
+  [1m[36mEnrollment Load (0.8ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" WHERE "enrollments"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/enrollments_controller.rb:17:in `show'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.06ms)
+Completed 200 OK in 11ms (Views: 2.3ms | ActiveRecord: 0.8ms | Allocations: 987)
+
+
+Started GET "/api/v1/enrollments" for ::1 at 2022-12-17 19:15:58 -0300
+Processing by Api::V1::EnrollmentsController#index as HTML
+  [1m[36mEnrollment Load (4.8ms)[0m  [1m[34mSELECT "enrollments".* FROM "enrollments" ORDER BY created_at ASC[0m
+  ↳ app/controllers/api/v1/enrollments_controller.rb:9:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (15.2ms)
+Completed 200 OK in 30ms (Views: 23.0ms | ActiveRecord: 4.8ms | Allocations: 5351)
+
+
+Started GET "/api/v1/bills" for ::1 at 2022-12-17 19:15:59 -0300
+Processing by Api::V1::BillsController#index as HTML
+  [1m[36mBill Load (1.8ms)[0m  [1m[34mSELECT "bills".* FROM "bills"[0m
+  ↳ app/controllers/api/v1/bills_controller.rb:10:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (35.8ms)
+Completed 200 OK in 76ms (Views: 64.9ms | ActiveRecord: 1.8ms | Allocations: 18397)
+
+

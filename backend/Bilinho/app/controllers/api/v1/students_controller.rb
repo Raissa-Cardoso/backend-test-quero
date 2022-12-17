@@ -18,8 +18,8 @@ module Api
 							payment_method:students[count].payment_method
 						})
 						count+=1
-					end     
-					#result = ViewerStudents.new({count:params["count"], page:params["page"]}).charge	             
+					end    
+       
 					render json: {page: params["page"], items:studentsCount},status: :ok
 				end		
 			end
